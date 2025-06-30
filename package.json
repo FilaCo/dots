@@ -5,11 +5,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19",
     "@commitlint/config-conventional": "^19",
-    "@semantic-release/exec": "^7",
-    "@semantic-release/gitlab": "^13",
     "cz-conventional-changelog": "^3",
-    "husky": "^9",
-    "semantic-release": "^24"
+    "husky": "^9"
   },
   "config": {
     "commitizen": {
@@ -17,4 +14,3 @@
     }
   }
 }
-
