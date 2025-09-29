@@ -48,6 +48,7 @@ return {
       'ninja',
       'proto',
       'python',
+      'qmljs',
       'regex',
       'ron',
       'rust',
