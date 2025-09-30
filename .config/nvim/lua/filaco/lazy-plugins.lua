@@ -11,6 +11,12 @@
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   require 'filaco.plugins.autopairs',
+  require 'filaco.plugins.blink-cmp',
+  require 'filaco.plugins.conform',
+  require 'filaco.plugins.gitsigns',
+  require 'filaco.plugins.guess-indent',
+  require 'filaco.plugins.indent-line',
+  require 'filaco.plugins.lint',
   require 'filaco.plugins.lspconfig',
   require 'filaco.plugins.neo-tree',
   require 'filaco.plugins.telescope',

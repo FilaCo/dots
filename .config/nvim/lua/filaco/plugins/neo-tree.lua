@@ -16,9 +16,9 @@ return {
   opts = {
     filesystem = {
       filtered_items = {
-	hide_gitignored = false,
-	hide_dotfiles = false,
-	never_show = { '.git' },
+        hide_gitignored = false,
+        hide_dotfiles = false,
+        never_show = { '.git' },
       },
       window = {
         mappings = {

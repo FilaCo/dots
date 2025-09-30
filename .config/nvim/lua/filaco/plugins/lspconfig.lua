@@ -222,8 +222,8 @@ return {
             },
           },
         },
-	rust_analyzer = {},
-	stylua = {},
+        rust_analyzer = {},
+        stylua = {},
       }
 
       -- Ensure the servers and tools above are installed
