@@ -11,6 +11,8 @@ require 'filaco.options'
 
 require 'filaco.keymaps'
 
+require 'filaco.filetypes'
+
 require 'filaco.lazy-bootstrap'
 
 require 'filaco.lazy-plugins'
