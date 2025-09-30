@@ -223,6 +223,7 @@ return {
             },
           },
         },
+        qmlls = {},
         ruff = {},
         rust_analyzer = {},
         stylua = {},
