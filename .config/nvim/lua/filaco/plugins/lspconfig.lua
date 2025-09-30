@@ -223,6 +223,7 @@ return {
             },
           },
         },
+        ruff = {},
         rust_analyzer = {},
         stylua = {},
       }
