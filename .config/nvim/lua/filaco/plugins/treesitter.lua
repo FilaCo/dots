@@ -58,6 +58,8 @@ return {
       'toml',
       'typescript',
       'udev',
+      'vim',
+      'vimdoc',
       'wgsl',
       'wgsl_bevy',
       'xml',
