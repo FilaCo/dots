@@ -1,9 +1,0 @@
-[general]
-import = [
-"themes/tokyonight_night.toml",
-"fonts/jetbrains_mono_nerd.toml",
-]
-
-[font]
-size = 12.0
-

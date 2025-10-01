@@ -1,7 +1,7 @@
 # version: 1.0.0
 "$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = true
+add_newline = false 
 continuation_prompt = "[▸▹ ](dimmed white)"
 
 format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
@@ -324,4 +324,5 @@ unknown_msg = '[◌](bold dimmed ellow)'
 [spack]
 symbol = "◇ "
 format = " spack [$symbol$environment]($style)"
+
 
