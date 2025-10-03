@@ -28,6 +28,22 @@ TERM_WIDTH = TERM_SIZE.columns
 TERM_HEIGHT = TERM_SIZE.lines
 
 
+def prevent_sudo_or_root():
+    ROOT_UID = 0
+    if ROOT_UID != os.getuid():
+        return
+
+    print(
+        f'{Fore.red}This script is NOT to be executed with sudo or as root. Aborting...{Style.reset}'
+    )
+    exit('Aborted due to root permissons')
+
+
+def set_globals(args):
+    global NO_CONFIRM
+    NO_CONFIRM = NoConfirm.YES if args.noconfirm else NoConfirm.NO
+
+
 class ConfirmationAnswer(StrEnum):
     YES = 'y'
     EXIT = 'e'
@@ -35,14 +51,11 @@ class ConfirmationAnswer(StrEnum):
     YES_FOR_ALL = 'yesforall'
 
 
-def need_confirm(f):
-    if NoConfirm.YES == NO_CONFIRM:
-        return f
-
+def need_confirm(func):
     header = f"""
 {'#' * TERM_WIDTH}
 {Fore.blue}Next command:{Style.reset}
-{Fore.green}{inspect.getsource(f)}{Style.reset}
+{Fore.green}{inspect.getsource(func)}{Style.reset}
 """
     prompt = f"""
 {Fore.blue}Execute? {Style.reset}
@@ -53,6 +66,9 @@ yesforall = Yes and don't ask again; NOT recommended unless you really sure
 """
 
     def with_confirmation(*args, **kwargs):
+        global NO_CONFIRM
+        if NoConfirm.YES == NO_CONFIRM:
+            return func(*args, **kwargs)
         print(header)
         ans = ConfirmationAnswer.EXIT
         while True:
@@ -76,19 +92,18 @@ yesforall = Yes and don't ask again; NOT recommended unless you really sure
                 print(
                     f"""
 {Fore.blue}Alright, skipping this one...{Style.reset}
-{Fore.yellow}{f.__name__}{Style.reset} has been skipped
+{Fore.yellow}{func.__name__}{Style.reset} has been skipped
 """
                 )
             case ConfirmationAnswer.YES_FOR_ALL:
                 print(
                     f"{Fore.blue}Alright, won't ask again. Executing...{Style.reset}"
                 )
-                global NO_CONFIRM
                 NO_CONFIRM = NoConfirm.YES
-                return f(*args, **kwargs)
+                return func(*args, **kwargs)
             case ConfirmationAnswer.YES:
                 print(f'{Fore.blue}OK, executing...{Style.reset}')
-                return f(*args, **kwargs)
+                return func(*args, **kwargs)
 
     return with_confirmation
 
@@ -96,7 +111,7 @@ yesforall = Yes and don't ask again; NOT recommended unless you really sure
 @need_confirm
 def pacman_syu():
     subprocess.run(
-        'sudo pacman -Syu',
+        'sudo pacman -Syu --noconfirm',
         shell=True,
         check=True,
     )
@@ -105,7 +120,9 @@ def pacman_syu():
 @need_confirm
 def pacman_S_base_deps():
     subprocess.run(
-        'sudo pacman -S --needed git base-devel', shell=True, check=True
+        'sudo pacman -S --needed --noconfirm base-devel git',
+        shell=True,
+        check=True,
     )
 
 
@@ -121,10 +138,54 @@ def install_yay():
 @need_confirm
 def yay_S_req_deps():
     subprocess.run(
-        'yay -S --needed btop btrfs-progs chrony dockerfmt dosfstools efibootmgr e2fsprogs fwupd go grub hypridle hyprland hyprpaper hyprpicker hyprpolkitagent hyprsysteminfo kitty luarocks neovim nwg-displays quickshell steam teamspeak telegram-desktop ttf-jetbrains-mono-nerd vi yay yazi zen-browser-bin zram-generator',
+        'yay -S --needed --noconfirm btop btrfs-progs chrony dockerfmt dosfstools efibootmgr e2fsprogs fwupd fzf go grub hypridle hyprland hyprpaper hyprpicker hyprpolkitagent hyprsysteminfo kitty luarocks neovim nwg-displays quickshell ripgrep rsync steam teamspeak telegram-desktop ttf-jetbrains-mono-nerd vi vim yay yazi zen-browser-bin zram-generator zsh',
         check=True,
         shell=True,
     )
+
+
+@need_confirm
+def install_rust():
+    subprocess.run(
+        "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
+        check=True,
+        shell=True,
+    )
+
+
+@need_confirm
+def install_nvm():
+    subprocess.run(
+        'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash',
+        check=True,
+        shell=True,
+    )
+
+
+@need_confirm
+def install_starship():
+    subprocess.run(
+        'curl -sS https://starship.rs/install.sh | sh',
+        check=True,
+        shell=True,
+    )
+
+
+@need_confirm
+def install_treesitter():
+    subprocess.run(
+        'cargo install --locked tree-sitter-cli',
+        check=True,
+        shell=True,
+    )
+
+
+SPECIAL_DEPS = {
+    'rustc': install_rust,
+    'nvm': install_nvm,
+    'starship': install_starship,
+    'tree-sitter': install_treesitter,
+}
 
 
 def install_deps():
@@ -136,28 +197,34 @@ def install_deps():
 
     yay_S_req_deps()
 
+    for dep, install_dep in SPECIAL_DEPS.items():
+        if not shutil.which(dep):
+            install_dep()
+
 
 def setup_env():
     pass
 
 
-def cp_dots():
+def sync_dots():
     pass
 
 
 def install(args):
+    set_globals(args)
     install_deps()
     setup_env()
-    cp_dots()
+    sync_dots()
 
 
 def main():
+    prevent_sudo_or_root()
     parser = argparse.ArgumentParser(
         description="FilaCo's dotfiles util script",
     )
     parser.add_argument('-v', '--verbose', action='count', default=0)
     parser.add_argument(
-        '--no-confirm',
+        '--noconfirm',
         action='store_true',
         help='do not confirm every time before a command executes',
     )
@@ -174,7 +241,7 @@ def main():
     args = parser.parse_args()
     try:
         args.func(args)
-    except:
+    except KeyboardInterrupt:
         pass
 
 
