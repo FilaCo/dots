@@ -226,9 +226,11 @@ return {
           },
         },
         qmlls = {},
-        ruff = {},
+        -- Cause: lack of completions
+        -- ruff = {},
         rust_analyzer = {},
         stylua = {},
+        ty = {},
       }
 
       -- Ensure the servers and tools above are installed
