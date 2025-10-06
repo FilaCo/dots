@@ -12,3 +12,16 @@ $(ansi::green)Options:$(ansi::resetFg)
 $(ansi::green)Commands:$(ansi::resetFg)
   $(ansi::cyan)install, i$(ansi::resetFg)		Install FilaCo's config"
 }
+
+p=$(getopt -o Vh -l version,help -n filaco -- "$@")
+[ $? != 0 ] && echo "filaco: getopt failed, please check params" && exit 1
+
+eval set -- "$p"
+
+while true ; do
+  case "$1" in
+    -h|--help) help;exit 0;;
+    --) break ;;
+    *) shift ;;
+  esac
+done
