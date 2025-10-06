@@ -180,9 +180,20 @@ def install_treesitter():
     )
 
 
+@need_confirm
+def install_omz():
+    subprocess.run(
+        'sh -c "$(curl -fsSL https://install.ohmyz.sh/)"',
+        check=True,
+        shell=True,
+    )
+
+
 SPECIAL_DEPS = {
+    # TODO: which 'cmd' is not suitable
+    # 'nvm': install_nvm,
+    # 'omz': install_omz,
     'rustc': install_rust,
-    'nvm': install_nvm,
     'starship': install_starship,
     'tree-sitter': install_treesitter,
 }
