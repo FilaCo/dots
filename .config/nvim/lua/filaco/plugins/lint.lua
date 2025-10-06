@@ -6,12 +6,14 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
+        bash = { 'shellcheck' },
         c = { 'clang-tidy' },
         cpp = { 'clang-tidy' },
         markdown = { 'markdownlint' },
         python = { 'ruff' },
         rust = { 'clippy' },
         sh = { 'shellcheck' },
+        zsh = { 'shellcheck' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,

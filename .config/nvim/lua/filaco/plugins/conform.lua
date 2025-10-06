@@ -30,6 +30,7 @@ return {
       end
     end,
     formatters_by_ft = {
+      bash = { 'shellcheck' },
       c = { 'clang-format' },
       cpp = { 'clang-format' },
       dockerfile = { 'dockerfmt' },
@@ -37,6 +38,7 @@ return {
       python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
       rust = { 'rustfmt' },
       sh = { 'shellcheck' },
+      zsh = { 'shellcheck' },
     },
   },
 }
