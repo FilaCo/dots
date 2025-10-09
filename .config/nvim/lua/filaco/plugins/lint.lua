@@ -11,7 +11,6 @@ return {
         cpp = { 'clang-tidy' },
         markdown = { 'markdownlint' },
         python = { 'ruff' },
-        rust = { 'clippy' },
         sh = { 'shellcheck' },
         zsh = { 'shellcheck' },
       }
