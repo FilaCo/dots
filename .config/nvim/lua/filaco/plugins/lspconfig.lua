@@ -291,7 +291,11 @@ return {
         qmlls = {},
         -- Cause: lack of completions
         -- ruff = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          check = {
+            command = 'clippy',
+          },
+        },
         stylua = {},
         ty = {},
       }
