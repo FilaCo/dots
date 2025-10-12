@@ -7,6 +7,7 @@ return {
     local ensure_installed = {
       'bash',
       'c',
+      'cangjie',
       'cmake',
       'cpp',
       'css',

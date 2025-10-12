@@ -1,0 +1,3 @@
+[submodule ".local/lib/tree-sitter-cangjie"]
+	path = .local/lib/tree-sitter-cangjie
+	url = https://gitcode.com/Cangjie-SIG/tree-sitter-cangjie
