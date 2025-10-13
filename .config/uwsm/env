@@ -18,5 +18,9 @@ export XDG_SESSION_DESKTOP='Hyprland'
 # app2unit integration
 APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
 
+# XCursor
+export XCURSOR_THEME='Bibata-Modern-Ice'
+export XCURSOR_SIZE='24'
+
 # Others
 export _JAVA_AWT_WM_NONREPARENTING='1'
