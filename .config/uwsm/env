@@ -1,0 +1,19 @@
+# Themes
+export QT_QPA_PLATFORMTHEME='qt6ct'
+export QT_WAYLAND_DISABLE_WINDOWDECORATION='1'
+export QT_AUTO_SCREEN_SCALE_FACTOR='1'
+
+# Toolkit backends
+export GDK_BACKEND='wayland'
+export QT_QPA_PLATFORM='wayland'
+export SDL_VIDEODRIVER='wayland'
+export CLUTTER_BACKEND='wayland'
+export ELECTRON_OZONE_PLATFORM_HINT='auto'
+
+# XDG specifications
+export XDG_CURRENT_DESKTOP='Hyprland'
+export XDG_SESSION_TYPE='wayland'
+export XDG_SESSION_DESKTOP='Hyprland'
+
+# app2unit integration
+APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
