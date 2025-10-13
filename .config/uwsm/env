@@ -17,3 +17,6 @@ export XDG_SESSION_DESKTOP='Hyprland'
 
 # app2unit integration
 APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
+
+# Others
+export _JAVA_AWT_WM_NONREPARENTING='1'
