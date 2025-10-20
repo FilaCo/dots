@@ -20,7 +20,7 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+	vim.o.clipboard = 'unnamedplus'
 end)
 
 -- Enable break indent
@@ -70,3 +70,6 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- bufferline requires termguicolors to work, as it reads the hex gui color values of various highlight groups.
+vim.opt.termguicolors = true
