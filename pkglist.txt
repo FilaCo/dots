@@ -1,4 +1,5 @@
 app2unit
+apple_cursor
 apple-fonts
 base
 base-devel
@@ -8,6 +9,7 @@ btrfs-progs
 chrony
 cliphist
 dosfstools
+e2fsprogs
 efibootmgr
 fuzzel
 fwupd
@@ -30,11 +32,9 @@ sof-firmware
 telegram-desktop
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
-ttf-roboto
 usbutils
 uwsm
 vi
 yay
-yay-debug
 zen-browser-bin
 zsh

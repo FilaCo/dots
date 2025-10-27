@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 ANSI_ESC=$'\033'
 ANSI_CSI="${ANSI_ESC}["
 ANSI_OSC="${ANSI_ESC}]"
@@ -18,5 +16,5 @@ ansi::cyan() {
 }
 
 ansi::resetFg() {
-    printf '%s39m' "$ANSI_CSI"
+  printf '%s39m' "$ANSI_CSI"
 }
