@@ -8,5 +8,5 @@ $(ansi::green)Options:$(ansi::resetFg)
   $(ansi::cyan)-h, --help$(ansi::resetFg)     Print help
 
 $(ansi::green)Commands:$(ansi::resetFg)
-  $(ansi::cyan)install, i$(ansi::resetFg)		Install FilaCo's config"
+  $(ansi::cyan)install, i$(ansi::resetFg)     Install FilaCo's config"
 }
