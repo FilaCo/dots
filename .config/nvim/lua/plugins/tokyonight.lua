@@ -1,6 +1,6 @@
 return {
-  "folke/tokyonight.nvim",
+  'folke/tokyonight.nvim',
   opts = {
-    style = "night",
+    style = 'night',
   },
 }
