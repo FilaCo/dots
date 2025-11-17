@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('User', {
   callback = function()
     require('nvim-treesitter.parsers').cangjie = {
       install_info = {
-        path = '~/toolchain/tree-sitter-cangjie',
+        url = 'https://gitcode.com/Cangjie-SIG/tree-sitter-cangjie',
         queries = 'queries',
       },
     }
