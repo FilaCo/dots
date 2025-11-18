@@ -79,8 +79,8 @@ local function get_cjpm_metadata(root_dir)
 end
 
 local severities = {
-  error = vim.diagnostic.severity.ERROR,
-  warning = vim.diagnostic.severity.WARN,
+  ['error'] = vim.diagnostic.severity.ERROR,
+  ['warning'] = vim.diagnostic.severity.WARN,
 }
 
 local function cjlint_parse(diags, fname, item)
@@ -89,7 +89,7 @@ local function cjlint_parse(diags, fname, item)
   -- 3 - col
   -- 4 - severity
   -- 5 - Cangjie linter error code
-  -- 6 - Cangjie liner error message
+  -- 6 - Cangjie linter error message
   local splitted = vim.split(item, ':')
 
   if #splitted == 0 or #splitted < 6 then
@@ -101,12 +101,22 @@ local function cjlint_parse(diags, fname, item)
     return
   end
 
+  local str_lnum = splitted[2]:gsub('%D', '')
+  local str_col = splitted[3]:gsub('%D', '')
+  -- strip ANSI from cjlint stderr report https://stackoverflow.com/a/49209650/368691
+  local raw_severity =
+    splitted[4]:gsub('[\27\155][][()#;?%d]*[A-PRZcf-ntqry=><~]', '')
+
+  str_lnum = vim.trim(str_lnum)
+  str_col = vim.trim(str_col)
+  raw_severity = vim.trim(raw_severity)
+
   ---@type vim.Diagnostic
   local diag = {
     source = fname,
-    lnum = tonumber(splitted[2]:gsub('%D', '')) - 1 or 0,
-    col = tonumber(splitted[3]:gsub('%D', '')) - 1 or 0,
-    severity = severities[splitted[4]:gsub('%W', '')],
+    lnum = tonumber(str_lnum) - 1 or 0,
+    col = tonumber(str_col) - 1 or 0,
+    severity = severities[raw_severity],
     code = splitted[5],
     message = splitted[6],
   }
