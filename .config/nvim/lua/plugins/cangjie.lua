@@ -19,6 +19,30 @@ local user_home = vim.fs.normalize(vim.env.HOME)
 local cangjie_home = os.getenv 'CANGJIE_HOME'
   or user_home .. path_sep .. '.cangjie'
 local cjpm_bin_fname = table.concat({ user_home, '.cjpm', 'bin' }, path_sep)
+local cangjie_env = {
+  CANGJIE_HOME = cangjie_home,
+  CANGJIE_PATH = table.concat({
+    cangjie_home .. path_sep .. 'bin',
+    table.concat({ cangjie_home, 'tools', 'bin' }, path_sep),
+    cjpm_bin_fname,
+  }, path_delim),
+  PATH = table.concat({
+    cangjie_home .. path_sep .. 'bin',
+    table.concat({ cangjie_home, 'tools', 'bin' }, path_sep),
+    vim.env.PATH or '',
+    cjpm_bin_fname,
+  }, path_delim),
+  LD_LIBRARY_PATH = table.concat({
+    table.concat({
+      cangjie_home,
+      'runtime',
+      'lib',
+      'linux_' .. arch .. '_cjnative',
+    }, path_sep),
+    table.concat({ cangjie_home, 'tools', 'lib' }, path_sep),
+    vim.env.LD_LIBRARY_PATH or '',
+  }, path_delim),
+}
 
 local lsp_server_bin =
   table.concat({ cangjie_home, 'tools', 'bin', 'LSPServer' }, path_sep)
@@ -52,6 +76,41 @@ local function get_cjpm_metadata(root_dir)
   end
 
   return result
+end
+
+local severities = {
+  error = vim.diagnostic.severity.ERROR,
+  warning = vim.diagnostic.severity.WARN,
+}
+
+local function cjlint_parse(diags, fname, item)
+  -- 1 - buf fname
+  -- 2 - line
+  -- 3 - col
+  -- 4 - severity
+  -- 5 - Cangjie linter error code
+  -- 6 - Cangjie liner error message
+  local splitted = vim.split(item, ':')
+
+  if #splitted == 0 or #splitted < 6 then
+    return
+  end
+
+  -- Show only current file diags (should we?)
+  if splitted[1] ~= fname then
+    return
+  end
+
+  ---@type vim.Diagnostic
+  local diag = {
+    source = fname,
+    lnum = tonumber(splitted[2]:gsub('%D', '')) - 1 or 0,
+    col = tonumber(splitted[3]:gsub('%D', '')) - 1 or 0,
+    severity = severities[splitted[4]:gsub('%W', '')],
+    code = splitted[5],
+    message = splitted[6],
+  }
+  table.insert(diags, diag)
 end
 
 return {
@@ -101,14 +160,25 @@ return {
         cjlint = {
           cmd = cjlint_bin,
           stdin = false,
-          args = function()
-            local bufname = vim.api.nvim_buf_get_name(0)
-            local cjpm_package_root = vim.fs.root(bufname, { 'cjpm.toml' })
-            return { '-f', cjpm_package_root }
-          end, -- list of arguments. Can contain functions with zero arguments that will be evaluated once the linter is used.
-          stream = 'stderr', -- ('stdout' | 'stderr' | 'both') configure the stream to which the linter outputs the linting result.
-          ignore_exitcode = true, -- set this to true if the linter exits with a code != 0 and that's considered normal.
-          -- parser =
+          append_fname = false,
+          args = {
+            '-f',
+            function()
+              return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p:h')
+            end,
+          },
+          stream = 'both', -- ('stdout' | 'stderr' | 'both') configure the stream to which the linter outputs the linting result.
+          env = cangjie_env,
+          parser = function(output, bufnr, _)
+            local diags = {}
+            local items = #output > 0 and vim.split(output, '\n') or {}
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            for _, i in ipairs(items) do
+              cjlint_parse(diags, fname, i)
+            end
+
+            return diags
+          end,
         },
       },
     },
@@ -119,31 +189,8 @@ return {
       servers = {
         ---@type vim.lsp.Config
         cangjie = {
-          cmd = { lsp_server_bin, 'src', '-V' },
-          cmd_env = {
-            CANGJIE_HOME = cangjie_home,
-            CANGJIE_PATH = table.concat({
-              cangjie_home .. path_sep .. 'bin',
-              table.concat({ cangjie_home, 'tools', 'bin' }, path_sep),
-              cjpm_bin_fname,
-            }, path_delim),
-            PATH = table.concat({
-              cangjie_home .. path_sep .. 'bin',
-              table.concat({ cangjie_home, 'tools', 'bin' }, path_sep),
-              vim.env.PATH or '',
-              cjpm_bin_fname,
-            }, path_delim),
-            LD_LIBRARY_PATH = table.concat({
-              table.concat({
-                cangjie_home,
-                'runtime',
-                'lib',
-                'linux_' .. arch .. '_cjnative',
-              }, path_sep),
-              table.concat({ cangjie_home, 'tools', 'lib' }, path_sep),
-              vim.env.LD_LIBRARY_PATH or '',
-            }, path_delim),
-          },
+          cmd = { lsp_server_bin, '-V', '--disableAutoImport' },
+          cmd_env = cangjie_env,
           filetypes = { 'cangjie' },
           -- TODO: support workspaces via root_dir
           root_markers = {
@@ -156,11 +203,7 @@ return {
           },
           before_init = function(init_params, config)
             local cjpm_meta = get_cjpm_metadata(config.root_dir)
-            config.cmd = {
-              lsp_server_bin,
-              cjpm_meta.package.src,
-              '-V',
-            }
+
             config.init_options.targetLib = table.concat(
               { config.root_dir, cjpm_meta.package.target, 'release' },
               path_sep
