@@ -81,6 +81,10 @@ return {
       formatters = {
         ---@type conform.FileFormatterConfig
         cjfmt = {
+          meta = {
+            url = 'https://gitcode.com/Cangjie/cangjie_tools',
+            description = 'An automated code formatting tool developed based on the Cangjie language programming specifications.',
+          },
           command = cjfmt_bin,
           args = function(self, ctx)
             return { '-c', 'cjfmt.toml', '-f', '$FILENAME' }
