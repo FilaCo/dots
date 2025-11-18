@@ -26,21 +26,12 @@ local lsp_server_bin =
 local cjfmt_bin =
   table.concat({ cangjie_home, 'tools', 'bin', 'cjfmt' }, path_sep)
 
+local cjlint_bin =
+  table.concat({ cangjie_home, 'tools', 'bin', 'cjlint' }, path_sep)
+
 local function parse_toml(fname)
   local TOML = require 'toml'
   return TOML.parse(table.concat(vim.fn.readfile(fname), '\n'))
-end
-
-local function table_merge(lhs, rhs)
-  for k, v in pairs(rhs) do
-    if type(v) == 'table' and type(lhs[k]) == 'table' then
-      lhs[k] = table_merge(lhs[k], v)
-    else
-      lhs[k] = v
-    end
-  end
-
-  return lhs
 end
 
 local function get_cjpm_metadata(root_dir)
@@ -57,7 +48,7 @@ local function get_cjpm_metadata(root_dir)
     .. path_sep
     .. 'cjpm.toml'
   if vim.fn.filereadable(cjpm_toml_fname) then
-    result = table_merge(result, parse_toml(cjpm_toml_fname))
+    result = vim.tbl_deep_extend('force', result, parse_toml(cjpm_toml_fname))
   end
 
   return result
@@ -96,6 +87,28 @@ return {
             'cjfmt.toml',
           },
           stdin = false,
+        },
+      },
+    },
+  },
+  {
+    'mfussenegger/nvim-lint',
+    opts = {
+      linters_by_ft = {
+        cangjie = { 'cjlint' },
+      },
+      linters = {
+        cjlint = {
+          cmd = cjlint_bin,
+          stdin = false,
+          args = function()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            local cjpm_package_root = vim.fs.root(bufname, { 'cjpm.toml' })
+            return { '-f', cjpm_package_root }
+          end, -- list of arguments. Can contain functions with zero arguments that will be evaluated once the linter is used.
+          stream = 'stderr', -- ('stdout' | 'stderr' | 'both') configure the stream to which the linter outputs the linting result.
+          ignore_exitcode = true, -- set this to true if the linter exits with a code != 0 and that's considered normal.
+          -- parser =
         },
       },
     },
