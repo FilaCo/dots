@@ -21,6 +21,14 @@ local cangjie_home = os.getenv 'CANGJIE_HOME'
 local cjpm_bin_fname = table.concat({ user_home, '.cjpm', 'bin' }, path_sep)
 local cangjie_env = {
   CANGJIE_HOME = cangjie_home,
+  CANGJIE_STDX_PATH = table.concat({
+    cangjie_home,
+    'cangjie_stdx',
+    'target',
+    'linux_' .. arch .. '_cjnative',
+    'static',
+    'stdx',
+  }, path_sep),
   CANGJIE_PATH = table.concat({
     cangjie_home .. path_sep .. 'bin',
     table.concat({ cangjie_home, 'tools', 'bin' }, path_sep),
@@ -58,12 +66,21 @@ local function parse_toml(fname)
   return TOML.parse(table.concat(vim.fn.readfile(fname), '\n'))
 end
 
+local function make_multi_module_option(cjpm_metadata, root_dir)
+  local multi_module_option = {}
+
+  local root_uri = vim.uri_from_fname(root_dir)
+  multi_module_option[root_uri] = {
+    name = cjpm_metadata.package.name,
+    requires = cjpm_metadata.requires,
+  }
+  return multi_module_option
+end
+
 local function get_cjpm_metadata(root_dir)
   local result = {
     package = {
       name = 'default',
-      src = 'src',
-      target = 'target',
     },
   }
 
@@ -71,9 +88,27 @@ local function get_cjpm_metadata(root_dir)
   local cjpm_toml_fname = vim.fn.fnamemodify(root_dir, ':p')
     .. path_sep
     .. 'cjpm.toml'
-  if vim.fn.filereadable(cjpm_toml_fname) then
+  if vim.fn.filereadable(cjpm_toml_fname) == 1 then
     result = vim.tbl_deep_extend('force', result, parse_toml(cjpm_toml_fname))
+
+    result.package['target-dir'] = result.package['target-dir'] ~= ''
+        and result.package['target-dir']
+      or 'target'
+
+    result.package['src-dir'] = result.package['src-dir'] ~= ''
+        and result.package['src-dir']
+      or 'src'
   end
+
+  -- parse cjpm.lock
+  local cjpm_lock_fname = vim.fn.fnamemodify(root_dir, ':p')
+    .. path_sep
+    .. 'cjpm.lock'
+  if vim.fn.filereadable(cjpm_lock_fname) == 1 then
+    result = vim.tbl_deep_extend('force', result, parse_toml(cjpm_lock_fname))
+  end
+
+  -- fill [requires]
 
   return result
 end
@@ -146,10 +181,10 @@ return {
             description = 'An automated code formatting tool developed based on the Cangjie language programming specifications.',
           },
           command = cjfmt_bin,
-          args = function(self, ctx)
+          args = function(_, _)
             return { '-c', 'cjfmt.toml', '-f', '$FILENAME' }
           end,
-          range_args = function(self, ctx)
+          range_args = function(_, ctx)
             return { '-l' .. ctx.range.start[1] .. ':' .. ctx.range['end'][1] }
           end,
           cwd = require('conform.util').root_file {
@@ -177,7 +212,7 @@ return {
               return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p:h')
             end,
           },
-          stream = 'both', -- ('stdout' | 'stderr' | 'both') configure the stream to which the linter outputs the linting result.
+          stream = 'stderr',
           env = cangjie_env,
           parser = function(output, bufnr, _)
             local diags = {}
@@ -199,25 +234,56 @@ return {
       servers = {
         ---@type vim.lsp.Config
         cangjie = {
-          cmd = { lsp_server_bin, '-V', '--disableAutoImport' },
+          cmd = {
+            lsp_server_bin,
+            '--unconfigured',
+          },
           cmd_env = cangjie_env,
           filetypes = { 'cangjie' },
           -- TODO: support workspaces via root_dir
           root_markers = {
             'cjpm.toml',
+            '.git',
           },
-          init_options = {
-            modulesHomeOption = cangjie_home,
-            stdLibPathOption = cangjie_home,
-            telemetryOption = true,
+          settings = {
+            cangjie = {},
           },
+          single_file_support = true,
           before_init = function(init_params, config)
-            local cjpm_meta = get_cjpm_metadata(config.root_dir)
+            local cjpm_metadata = get_cjpm_metadata(config.root_dir)
 
-            config.init_options.targetLib = table.concat(
-              { config.root_dir, cjpm_meta.package.target, 'release' },
-              path_sep
-            )
+            init_params.initializationOptions = {
+              targetLib = table.concat({
+                config.root_dir,
+                cjpm_metadata.package['target-dir'],
+                'release',
+              }, path_sep),
+              multiModuleOption = make_multi_module_option(
+                cjpm_metadata,
+                config.root_dir
+              ),
+            }
+
+            init_params.workspaceFolders = {
+              {
+                uri = vim.uri_from_fname(config.root_dir),
+                name = vim.fn.fnamemodify(config.root_dir, ':t'),
+              },
+            }
+          end,
+          on_attach = function(client, bufnr)
+            local root_dir = vim.fs.root(bufnr, 'cjpm.toml')
+              or client.config.root_dir
+              or cangjie_home
+
+            local cjpm_metadata = get_cjpm_metadata(root_dir)
+
+            client.config.cmd = {
+              lsp_server_bin,
+              cjpm_metadata.package['src-dir'],
+              '-V',
+              '--disableAutoImport',
+            }
           end,
         },
       },
