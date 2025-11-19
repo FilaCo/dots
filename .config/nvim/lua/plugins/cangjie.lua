@@ -145,6 +145,8 @@ local function cjlint_parse(diags, fname, item)
   str_lnum = vim.trim(str_lnum)
   str_col = vim.trim(str_col)
   raw_severity = vim.trim(raw_severity)
+  local code = vim.trim(splitted[5])
+  local message = vim.trim(splitted[6])
 
   ---@type vim.Diagnostic
   local diag = {
@@ -152,8 +154,8 @@ local function cjlint_parse(diags, fname, item)
     lnum = tonumber(str_lnum) - 1 or 0,
     col = tonumber(str_col) - 1 or 0,
     severity = severities[raw_severity],
-    code = splitted[5],
-    message = splitted[6],
+    code = code,
+    message = message,
   }
   table.insert(diags, diag)
 end
