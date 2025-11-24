@@ -23,9 +23,8 @@ local cangjie_env = {
   CANGJIE_HOME = cangjie_home,
   CANGJIE_STDX_PATH = table.concat({
     cangjie_home,
-    'cangjie_stdx',
-    'target',
-    'linux_' .. arch .. '_cjnative',
+    'third_party',
+    'stdx',
     'static',
     'stdx',
   }, path_sep),
