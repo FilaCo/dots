@@ -1,0 +1,56 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "autosave": "on_focus_change",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "agent": {
+    "default_profile": "minimal",
+    "default_model": {
+      "provider": "ollama",
+      "model": "deepseek-r1:8b"
+    },
+    "model_parameters": []
+  },
+  "language_models": {
+    "ollama": {
+      "api_url": "https://ai.filaco.dev",
+      "available_models": [
+        {
+          "name": "deepseek-r1:8b",
+          "display_name": "DeepSeek R1",
+          "max_tokens": 32768,
+          "supports_tools": true,
+          "supports_thinking": true
+        }
+      ]
+    }
+  },
+  "format_on_save": "on",
+  "ssh_connections": [
+    {
+      "host": "filaco.dev",
+      "username": "filaco",
+      "port": 40697,
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/filaco/Projects/containers"]
+        }
+      ]
+    }
+  ],
+  "vim_mode": false,
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
+  }
+}
