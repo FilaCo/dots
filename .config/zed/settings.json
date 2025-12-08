@@ -13,7 +13,7 @@
     "default_profile": "minimal",
     "default_model": {
       "provider": "ollama",
-      "model": "deepseek-r1:8b"
+      "model": "ministral-3:8b"
     },
     "model_parameters": []
   },
@@ -24,9 +24,14 @@
         {
           "name": "deepseek-r1:8b",
           "display_name": "DeepSeek R1",
-          "max_tokens": 32768,
-          "supports_tools": true,
+          "max_tokens": 65536,
           "supports_thinking": true
+        },
+        {
+          "name": "ministral-3:8b",
+          "display_name": "Ministral 3",
+          "max_tokens": 65536,
+          "supports_tools": true
         }
       ]
     }
