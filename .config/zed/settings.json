@@ -10,7 +10,7 @@
   "autosave": "on_focus_change",
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "agent": {
-    "default_profile": "minimal",
+    "default_profile": "write",
     "default_model": {
       "provider": "ollama",
       "model": "ministral-3:8b"
@@ -46,8 +46,12 @@
       "projects": [
         {
           "paths": ["/home/filaco/Projects/containers"]
+        },
+        {
+          "paths": ["/home/filaco/Projects/filaco.dev"]
         }
-      ]
+      ],
+      "port_forwards": [{ "local_port": 1313, "remote_port": 1313 }]
     }
   ],
   "vim_mode": false,
