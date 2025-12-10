@@ -61,5 +61,14 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark"
+  },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy"
+        }
+      }
+    }
   }
 }
