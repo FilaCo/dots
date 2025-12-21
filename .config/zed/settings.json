@@ -7,6 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ensure_final_newline_on_save": false,
+  "remove_trailing_whitespace_on_save": false,
   "autosave": "on_focus_change",
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "agent": {
@@ -33,11 +35,17 @@
           "max_tokens": 65536,
           "supports_tools": true,
           "supports_images": true
+        },
+        {
+          "name": "gemma3:4b",
+          "display_name": "Gemma 3",
+          "max_tokens": 131072,
+          "supports_images": true
         }
       ]
     }
   },
-  "format_on_save": "on",
+  "format_on_save": "off",
   "ssh_connections": [
     {
       "host": "filaco.dev",
@@ -45,6 +53,11 @@
       "port": 40697,
       "args": [],
       "projects": [
+        {
+          "paths": [
+            "/home/filaco/Projects/cjdev"
+          ]
+        },
         {
           "paths": [
             "/home/filaco/Projects/containers"
