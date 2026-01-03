@@ -1,6 +1,4 @@
 app2unit
-apple_cursor
-apple-fonts
 base
 base-devel
 bluez
@@ -11,6 +9,7 @@ cliphist
 dosfstools
 e2fsprogs
 efibootmgr
+fish
 fuzzel
 fwupd
 git
@@ -37,4 +36,3 @@ uwsm
 vi
 yay
 zen-browser-bin
-zsh
