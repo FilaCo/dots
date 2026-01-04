@@ -7,17 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "ensure_final_newline_on_save": false,
-  "remove_trailing_whitespace_on_save": false,
   "autosave": "on_focus_change",
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "agent": {
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
       "provider": "ollama",
-      "model": "ministral-3:8b"
+      "model": "ministral-3:8b",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "language_models": {
     "ollama": {
@@ -27,56 +25,35 @@
           "name": "deepseek-r1:8b",
           "display_name": "DeepSeek R1",
           "max_tokens": 65536,
-          "supports_thinking": true
+          "supports_thinking": true,
         },
         {
           "name": "ministral-3:8b",
           "display_name": "Ministral 3",
           "max_tokens": 65536,
           "supports_tools": true,
-          "supports_images": true
+          "supports_images": true,
         },
         {
           "name": "gemma3:4b",
           "display_name": "Gemma 3",
           "max_tokens": 131072,
-          "supports_images": true
-        }
-      ]
-    }
+          "supports_images": true,
+        },
+      ],
+    },
   },
-  "format_on_save": "off",
-  "ssh_connections": [
-    {
-      "host": "filaco.dev",
-      "username": "filaco",
-      "port": 40697,
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/home/filaco/Projects/cjdev"
-          ]
-        },
-        {
-          "paths": [
-            "/home/filaco/Projects/containers"
-          ]
-        },
-        {
-          "paths": [
-            "/home/filaco/Projects/filaco.dev"
-          ]
-        }
-      ]
-    }
-  ],
   "vim_mode": false,
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
-  }
+    "dark": "One Dark",
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["ty", "!basedpyright", "..."],
+    },
+  },
 }
