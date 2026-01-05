@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 
 def install(args: argparse.Namespace):
-    logger.info("Not implemented yet")
+    pass
 
 
 def add_install_cmd(subparsers: argparse._SubParsersAction):
