@@ -1,7 +1,8 @@
 import argparse
-import logging
 
-logger = logging.getLogger(__name__)
+from utils.logger import getLogger
+
+logger = getLogger(__name__)
 
 
 def clean(args: argparse.Namespace):
