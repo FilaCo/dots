@@ -19,7 +19,7 @@ export XDG_SESSION_DESKTOP='Hyprland'
 APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
 
 # XCursor
-export XCURSOR_THEME='macOS'
+export XCURSOR_THEME='sweet-cursors'
 export XCURSOR_SIZE='24'
 
 # Others
