@@ -1,7 +1,6 @@
 # version: 1.0.0
-"$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = false 
+add_newline = false
 continuation_prompt = "[▸▹ ](dimmed white)"
 
 format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
@@ -30,7 +29,6 @@ $pijul_channel\
 $docker_context\
 $package\
 $c\
-$cpp\
 $cmake\
 $cobol\
 $daml\
@@ -74,7 +72,6 @@ $vagrant\
 $zig\
 $buf\
 $conda\
-$pixi\
 $meson\
 $spack\
 $memory_usage\
@@ -131,6 +128,7 @@ repo_root_style = 'bold blue'
 repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold bright-blue)'
 
 [cmd_duration]
+min_time = 0
 format = "[◄ $duration ](italic white)"
 
 [jobs]
@@ -261,17 +259,9 @@ format = " [buf](italic) [$symbol $version $buf_version]($style)"
 symbol = "ℂ "
 format = " [$symbol($version(-$name))]($style)"
 
-[cpp]
-symbol = "ℂ "
-format = " [$symbol($version(-$name))]($style)"
-
 [conda]
 symbol = "◯ "
 format = " conda [$symbol$environment]($style)"
-
-[pixi]
-symbol = "■ "
-format = " pixi [$symbol$version ($environment )]($style)"
 
 [dart]
 symbol = "◁◅ "
@@ -324,5 +314,3 @@ unknown_msg = '[◌](bold dimmed ellow)'
 [spack]
 symbol = "◇ "
 format = " spack [$symbol$environment]($style)"
-
-

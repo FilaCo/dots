@@ -23,6 +23,8 @@ def install(args: argparse.Namespace):
 def install_server(args: argparse.Namespace):
     pass
 
+def install_server(args: argparse.Namespace):
+    pass
 
 def add_install_cmd(subparsers: argparse._SubParsersAction):
     install_parser = subparsers.add_parser(
