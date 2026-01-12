@@ -11,10 +11,10 @@
     },
     "font": {
       "family": {
-        "sans": "Noto Sans",
+        "sans": "Rubick",
         "mono": "JetBrainsMono Nerd Font",
         "material": "Material Symbols Rounded",
-        "clock": "JetBrainsMono Nerd Font"
+        "clock": "Rubick"
       },
       "size": {
         "scale": 1
