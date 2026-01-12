@@ -33,10 +33,18 @@
   },
   "general": {
     "apps": {
-      "terminal": ["foot"],
-      "audio": ["pavucontrol"],
-      "playback": ["mpv"],
-      "explorer": ["thunar"]
+      "terminal": [
+        "foot"
+      ],
+      "audio": [
+        "pavucontrol"
+      ],
+      "playback": [
+        "mpv"
+      ],
+      "explorer": [
+        "thunar"
+      ]
     },
     "idle": {
       "lockBeforeSleep": true,
@@ -52,7 +60,10 @@
           "timeout": 300
         },
         {
-          "idleAction": ["systemctl", "suspend-then-hibernate"],
+          "idleAction": [
+            "systemctl",
+            "suspend-then-hibernate"
+          ],
           "timeout": 600
         }
       ]
@@ -130,7 +141,7 @@
     },
     "tray": {
       "background": false,
-      "recolour": false,
+      "recolour": true,
       "compact": false,
       "iconSubs": []
     },
@@ -139,8 +150,8 @@
       "showMicrophone": false,
       "showKbLayout": true,
       "showNetwork": true,
-      "showBluetooth": false,
-      "showBattery": false,
+      "showBluetooth": true,
+      "showBattery": true,
       "showLockStatus": true
     },
     "clock": {
@@ -233,13 +244,27 @@
     "enableDangerousActions": false,
     "dragThreshold": 50,
     "vimKeybinds": false,
-    "hiddenApps": [],
+    "hiddenApps": [
+      "bssh",
+      "bvnc",
+      "xfce4-about",
+      "avahi-discover",
+      "thunar-bulk-rename",
+      "cmake-gui",
+      "footclient",
+      "foot-server",
+      "assistant",
+      "qdbusviewer",
+      "linguist",
+      "qv4l2",
+      "qvidcap"
+    ],
     "useFuzzy": {
-      "apps": false,
-      "actions": false,
-      "schemes": false,
-      "variants": false,
-      "wallpapers": false
+      "apps": true,
+      "actions": true,
+      "schemes": true,
+      "variants": true,
+      "wallpapers": true
     },
     "sizes": {
       "itemWidth": 600,
@@ -249,7 +274,10 @@
     },
     "actions": [
       {
-        "command": ["autocomplete", "calc"],
+        "command": [
+          "autocomplete",
+          "calc"
+        ],
         "dangerous": false,
         "description": "Do simple math equations (powered by Qalc)",
         "enabled": true,
@@ -257,7 +285,10 @@
         "name": "Calculator"
       },
       {
-        "command": ["autocomplete", "scheme"],
+        "command": [
+          "autocomplete",
+          "scheme"
+        ],
         "dangerous": false,
         "description": "Change the current colour scheme",
         "enabled": true,
@@ -265,7 +296,10 @@
         "name": "Scheme"
       },
       {
-        "command": ["autocomplete", "wallpaper"],
+        "command": [
+          "autocomplete",
+          "wallpaper"
+        ],
         "dangerous": false,
         "description": "Change the current wallpaper",
         "enabled": true,
@@ -273,7 +307,10 @@
         "name": "Wallpaper"
       },
       {
-        "command": ["autocomplete", "variant"],
+        "command": [
+          "autocomplete",
+          "variant"
+        ],
         "dangerous": false,
         "description": "Change the current scheme variant",
         "enabled": true,
@@ -281,7 +318,10 @@
         "name": "Variant"
       },
       {
-        "command": ["autocomplete", "transparency"],
+        "command": [
+          "autocomplete",
+          "transparency"
+        ],
         "dangerous": false,
         "description": "Change shell transparency",
         "enabled": false,
@@ -289,7 +329,11 @@
         "name": "Transparency"
       },
       {
-        "command": ["caelestia", "wallpaper", "-r"],
+        "command": [
+          "caelestia",
+          "wallpaper",
+          "-r"
+        ],
         "dangerous": false,
         "description": "Switch to a random wallpaper",
         "enabled": true,
@@ -297,7 +341,10 @@
         "name": "Random"
       },
       {
-        "command": ["setMode", "light"],
+        "command": [
+          "setMode",
+          "light"
+        ],
         "dangerous": false,
         "description": "Change the scheme to light mode",
         "enabled": true,
@@ -305,7 +352,10 @@
         "name": "Light"
       },
       {
-        "command": ["setMode", "dark"],
+        "command": [
+          "setMode",
+          "dark"
+        ],
         "dangerous": false,
         "description": "Change the scheme to dark mode",
         "enabled": true,
@@ -313,7 +363,10 @@
         "name": "Dark"
       },
       {
-        "command": ["systemctl", "poweroff"],
+        "command": [
+          "systemctl",
+          "poweroff"
+        ],
         "dangerous": true,
         "description": "Shutdown the system",
         "enabled": true,
@@ -321,7 +374,10 @@
         "name": "Shutdown"
       },
       {
-        "command": ["systemctl", "reboot"],
+        "command": [
+          "systemctl",
+          "reboot"
+        ],
         "dangerous": true,
         "description": "Reboot the system",
         "enabled": true,
@@ -329,7 +385,11 @@
         "name": "Reboot"
       },
       {
-        "command": ["loginctl", "terminate-user", ""],
+        "command": [
+          "loginctl",
+          "terminate-user",
+          ""
+        ],
         "dangerous": true,
         "description": "Log out of the current session",
         "enabled": true,
@@ -337,7 +397,10 @@
         "name": "Logout"
       },
       {
-        "command": ["loginctl", "lock-session"],
+        "command": [
+          "loginctl",
+          "lock-session"
+        ],
         "dangerous": false,
         "description": "Lock the current session",
         "enabled": true,
@@ -345,7 +408,10 @@
         "name": "Lock"
       },
       {
-        "command": ["systemctl", "suspend-then-hibernate"],
+        "command": [
+          "systemctl",
+          "suspend-then-hibernate"
+        ],
         "dangerous": false,
         "description": "Suspend then hibernate",
         "enabled": true,
@@ -382,10 +448,23 @@
     "dragThreshold": 30,
     "vimKeybinds": false,
     "commands": {
-      "logout": ["loginctl", "terminate-user", ""],
-      "shutdown": ["systemctl", "poweroff"],
-      "hibernate": ["systemctl", "hibernate"],
-      "reboot": ["systemctl", "reboot"]
+      "logout": [
+        "loginctl",
+        "terminate-user",
+        ""
+      ],
+      "shutdown": [
+        "systemctl",
+        "poweroff"
+      ],
+      "hibernate": [
+        "systemctl",
+        "hibernate"
+      ],
+      "reboot": [
+        "systemctl",
+        "reboot"
+      ]
     },
     "sizes": {
       "button": 80
