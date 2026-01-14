@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "Material Icon Theme",
   "session": {
     "trust_all_worktrees": true,
   },
@@ -25,40 +26,6 @@
   ],
   "autosave": "on_focus_change",
   "buffer_font_family": "JetBrainsMono Nerd Font",
-  "agent": {
-    "default_profile": "write",
-    "default_model": {
-      "provider": "ollama",
-      "model": "ministral-3:8b",
-    },
-    "model_parameters": [],
-  },
-  "language_models": {
-    "ollama": {
-      "api_url": "https://ai.filaco.dev",
-      "available_models": [
-        {
-          "name": "deepseek-r1:8b",
-          "display_name": "DeepSeek R1",
-          "max_tokens": 65536,
-          "supports_thinking": true,
-        },
-        {
-          "name": "ministral-3:8b",
-          "display_name": "Ministral 3",
-          "max_tokens": 65536,
-          "supports_tools": true,
-          "supports_images": true,
-        },
-        {
-          "name": "gemma3:4b",
-          "display_name": "Gemma 3",
-          "max_tokens": 131072,
-          "supports_images": true,
-        },
-      ],
-    },
-  },
   "vim_mode": false,
   "ui_font_size": 16,
   "buffer_font_size": 15,
