@@ -1,0 +1,14 @@
+{
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.fontLigatures": true,
+  "workbench.colorTheme": "Caelestia",
+  "workbench.list.smoothScrolling": true,
+  "editor.smoothScrolling": true,
+  "terminal.integrated.smoothScrolling": true,
+  "workbench.iconTheme": "catppuccin-mocha",
+  "CangjieSdkPath.CJNativeBackend": "/home/filaco/.cangjie",
+  "Cangjie.CodeCheckOnSave": true,
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', monospace",
+  "workbench.startupEditor": "none",
+  "workbench.secondarySideBar.defaultVisibility": "hidden"
+}
