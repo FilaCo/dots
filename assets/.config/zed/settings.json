@@ -8,6 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
+    "default_profile": "minimal",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "deepseek",
@@ -17,7 +18,7 @@
   },
   "language_models": {
     "ollama": {
-      "api_url": "https://ollama.com",
+      "api_url": "https://ai.filaco.dev/ollama/api",
     },
   },
   "icon_theme": "Material Icon Theme",
