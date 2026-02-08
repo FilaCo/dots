@@ -36,7 +36,7 @@ if status is-interactive
     cat ~/.local/state/caelestia/sequences.txt 2>/dev/null
 
     # Autostart hyprland
-    if uwsm check may-start
+    if uwsm check may-start 1>/dev/null
         uwsm start hyprland-uwsm.desktop
     end
 end
