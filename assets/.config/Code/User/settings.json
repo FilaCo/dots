@@ -10,5 +10,7 @@
   "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', monospace",
   "workbench.startupEditor": "none",
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "onFocusChange",
+  "rust-analyzer.check.command": "clippy",
+  "editor.formatOnSave": true
 }
