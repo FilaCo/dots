@@ -11,3 +11,5 @@ if not vim.filetype.match { filename = 'cangjie' } then
 end
 
 vim.treesitter.language.register('cangjie', { 'cj' })
+
+vim.g.lazyvim_python_lsp = 'ty'
