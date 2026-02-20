@@ -5,12 +5,29 @@
   "editor.smoothScrolling": true,
   "terminal.integrated.smoothScrolling": true,
   "workbench.iconTheme": "catppuccin-mocha",
-  "CangjieSdkPath.CJNativeBackend": "/home/filaco/.cangjie",
   "Cangjie.CodeCheckOnSave": true,
   "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', monospace",
   "workbench.startupEditor": "none",
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "files.autoSave": "onFocusChange",
   "rust-analyzer.check.command": "clippy",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.fontSize": 16,
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "mesonbuild.languageServerPath": "/usr/bin/mesonlsp",
+  "mesonbuild.formatting.enabled": true,
+  "mesonbuild.downloadLanguageServer": false,
+  "claudeCode.preferredLocation": "panel",
+  "editor.inlayHints.enabled": "on",
+  "claudeCode.selectedModel": "opus",
+  "workbench.colorTheme": "Dark Modern",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "CangjieSdkPath.CJNativeBackend": "/home/filaco/.cangjie",
+  "[objective-c]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  }
 }

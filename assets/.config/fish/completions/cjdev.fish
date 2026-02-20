@@ -1,0 +1,1 @@
+complete --command cjdev --no-files --arguments "(env _CJDEV_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=get-args _TYPER_COMPLETE_ARGS=(commandline -cp) cjdev)" --condition "env _CJDEV_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=is-args _TYPER_COMPLETE_ARGS=(commandline -cp) cjdev"

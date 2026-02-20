@@ -1,1 +1,11 @@
-{}
+{
+    "appearance": {
+        "transparency": {
+            "enabled": false
+        }
+    },
+    "services": {
+        "useFahrenheit": false,
+        "useTwelveHourClock": false
+    }
+}

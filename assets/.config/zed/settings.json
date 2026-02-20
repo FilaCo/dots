@@ -7,17 +7,21 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "agent": {
-    "default_profile": "ask",
-    "default_model": {
-      "provider": "deepseek",
-      "model": "deepseek-chat",
-    },
-    "model_parameters": [],
+  "project_panel": {
+    "dock": "left",
   },
-  "language_models": {
-    "ollama": {
-      "api_url": "https://ai.filaco.dev/ollama/api",
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
     },
   },
   "icon_theme": "Material Icon Theme",
@@ -51,6 +55,15 @@
     "Python": {
       "language_servers": ["ty", "!basedpyright", "..."],
     },
+    "Cangjie": {
+      "language_servers": ["cangjie-lsp"],
+    },
+    "Meson": {
+      "language_servers": ["mesonlsp"],
+    },
+  },
+  "file_types": {
+    "Cangjie": ["cj"],
   },
   "lsp": {
     "rust-analyzer": {
@@ -58,6 +71,11 @@
         "check": {
           "command": "clippy",
         },
+      },
+    },
+    "cangjie-lsp": {
+      "settings": {
+        "serverPath": "/home/filaco/.local/bin/cjls",
       },
     },
   },
