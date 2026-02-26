@@ -9,7 +9,6 @@
 {
   "agent": {
     "default_profile": "ask",
-    "always_allow_tool_actions": true,
     "default_model": {
       "provider": "deepseek",
       "model": "deepseek-chat",
