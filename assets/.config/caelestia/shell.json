@@ -21,6 +21,8 @@
       }
     },
     "anim": {
+      "mediaGifSpeedAdjustment": 300,
+      "sessionGifSpeed": 0.7,
       "durations": {
         "scale": 1
       }
@@ -32,11 +34,21 @@
     }
   },
   "general": {
+    "logo": "",
+    "excludedScreens": [],
     "apps": {
-      "terminal": ["foot"],
-      "audio": ["pavucontrol"],
-      "playback": ["mpv"],
-      "explorer": ["thunar"]
+      "terminal": [
+        "foot"
+      ],
+      "audio": [
+        "pavucontrol"
+      ],
+      "playback": [
+        "mpv"
+      ],
+      "explorer": [
+        "thunar"
+      ]
     },
     "idle": {
       "lockBeforeSleep": true,
@@ -52,7 +64,10 @@
           "timeout": 300
         },
         {
-          "idleAction": ["systemctl", "suspend-then-hibernate"],
+          "idleAction": [
+            "systemctl",
+            "suspend-then-hibernate"
+          ],
           "timeout": 600
         }
       ]
@@ -84,8 +99,22 @@
   },
   "background": {
     "enabled": true,
+    "wallpaperEnabled": true,
     "desktopClock": {
-      "enabled": false
+      "enabled": false,
+      "scale": 1,
+      "position": "bottom-right",
+      "invertColors": false,
+      "background": {
+        "enabled": false,
+        "opacity": 0.7,
+        "blur": true
+      },
+      "shadow": {
+        "enabled": true,
+        "opacity": 0.7,
+        "blur": 0.4
+      }
     },
     "visualiser": {
       "enabled": false,
@@ -115,6 +144,7 @@
       "occupiedBg": false,
       "showWindows": true,
       "showWindowsOnSpecialWorkspaces": true,
+      "maxWindowIcons": 0,
       "activeTrail": false,
       "perMonitorWorkspaces": true,
       "label": "  ",
@@ -126,32 +156,40 @@
           "icon": "sports_esports",
           "name": "steam"
         }
+      ],
+      "windowIcons": [
+        {
+          "icon": "sports_esports",
+          "regex": "steam(_app_(default|[0-9]+))?"
+        }
       ]
+    },
+    "activeWindow": {
+      "compact": false,
+      "inverted": false,
+      "showOnHover": true
     },
     "tray": {
       "background": false,
       "recolour": true,
       "compact": false,
-      "iconSubs": []
+      "iconSubs": [],
+      "hiddenIcons": []
     },
     "status": {
       "showAudio": false,
       "showMicrophone": false,
       "showKbLayout": true,
       "showNetwork": true,
+      "showWifi": true,
       "showBluetooth": true,
       "showBattery": true,
       "showLockStatus": true
     },
     "clock": {
+      "background": false,
+      "showDate": false,
       "showIcon": true
-    },
-    "sizes": {
-      "innerWidth": 40,
-      "windowPreviewSize": 400,
-      "trayMenuWidth": 300,
-      "batteryWidth": 250,
-      "networkWidth": 320
     },
     "entries": [
       {
@@ -190,7 +228,8 @@
         "enabled": true,
         "id": "power"
       }
-    ]
+    ],
+    "excludedScreens": []
   },
   "border": {
     "thickness": 10,
@@ -200,29 +239,18 @@
     "enabled": true,
     "showOnHover": true,
     "mediaUpdateInterval": 500,
+    "resourceUpdateInterval": 1000,
     "dragThreshold": 50,
-    "sizes": {
-      "tabIndicatorHeight": 3,
-      "tabIndicatorSpacing": 5,
-      "infoWidth": 200,
-      "infoIconSize": 25,
-      "dateTimeWidth": 110,
-      "mediaWidth": 200,
-      "mediaProgressSweep": 180,
-      "mediaProgressThickness": 8,
-      "resourceProgessThickness": 10,
-      "weatherWidth": 250,
-      "mediaCoverArtSize": 150,
-      "mediaVisualiserSize": 80,
-      "resourceSize": 200
+    "performance": {
+      "showBattery": true,
+      "showGpu": true,
+      "showCpu": true,
+      "showMemory": true,
+      "showStorage": true,
+      "showNetwork": true
     }
   },
-  "controlCenter": {
-    "sizes": {
-      "heightMult": 0.7,
-      "ratio": 1.7777777777777777
-    }
-  },
+  "controlCenter": {},
   "launcher": {
     "enabled": true,
     "showOnHover": false,
@@ -233,6 +261,7 @@
     "enableDangerousActions": false,
     "dragThreshold": 50,
     "vimKeybinds": false,
+    "favouriteApps": [],
     "hiddenApps": [
       "bssh",
       "bvnc",
@@ -255,15 +284,12 @@
       "variants": true,
       "wallpapers": true
     },
-    "sizes": {
-      "itemWidth": 600,
-      "itemHeight": 57,
-      "wallpaperWidth": 280,
-      "wallpaperHeight": 200
-    },
     "actions": [
       {
-        "command": ["autocomplete", "calc"],
+        "command": [
+          "autocomplete",
+          "calc"
+        ],
         "dangerous": false,
         "description": "Do simple math equations (powered by Qalc)",
         "enabled": true,
@@ -271,7 +297,10 @@
         "name": "Calculator"
       },
       {
-        "command": ["autocomplete", "scheme"],
+        "command": [
+          "autocomplete",
+          "scheme"
+        ],
         "dangerous": false,
         "description": "Change the current colour scheme",
         "enabled": true,
@@ -279,7 +308,10 @@
         "name": "Scheme"
       },
       {
-        "command": ["autocomplete", "wallpaper"],
+        "command": [
+          "autocomplete",
+          "wallpaper"
+        ],
         "dangerous": false,
         "description": "Change the current wallpaper",
         "enabled": true,
@@ -287,7 +319,10 @@
         "name": "Wallpaper"
       },
       {
-        "command": ["autocomplete", "variant"],
+        "command": [
+          "autocomplete",
+          "variant"
+        ],
         "dangerous": false,
         "description": "Change the current scheme variant",
         "enabled": true,
@@ -295,7 +330,10 @@
         "name": "Variant"
       },
       {
-        "command": ["autocomplete", "transparency"],
+        "command": [
+          "autocomplete",
+          "transparency"
+        ],
         "dangerous": false,
         "description": "Change shell transparency",
         "enabled": false,
@@ -303,7 +341,11 @@
         "name": "Transparency"
       },
       {
-        "command": ["caelestia", "wallpaper", "-r"],
+        "command": [
+          "caelestia",
+          "wallpaper",
+          "-r"
+        ],
         "dangerous": false,
         "description": "Switch to a random wallpaper",
         "enabled": true,
@@ -311,7 +353,10 @@
         "name": "Random"
       },
       {
-        "command": ["setMode", "light"],
+        "command": [
+          "setMode",
+          "light"
+        ],
         "dangerous": false,
         "description": "Change the scheme to light mode",
         "enabled": true,
@@ -319,7 +364,10 @@
         "name": "Light"
       },
       {
-        "command": ["setMode", "dark"],
+        "command": [
+          "setMode",
+          "dark"
+        ],
         "dangerous": false,
         "description": "Change the scheme to dark mode",
         "enabled": true,
@@ -327,7 +375,10 @@
         "name": "Dark"
       },
       {
-        "command": ["systemctl", "poweroff"],
+        "command": [
+          "systemctl",
+          "poweroff"
+        ],
         "dangerous": true,
         "description": "Shutdown the system",
         "enabled": true,
@@ -335,7 +386,10 @@
         "name": "Shutdown"
       },
       {
-        "command": ["systemctl", "reboot"],
+        "command": [
+          "systemctl",
+          "reboot"
+        ],
         "dangerous": true,
         "description": "Reboot the system",
         "enabled": true,
@@ -343,7 +397,11 @@
         "name": "Reboot"
       },
       {
-        "command": ["loginctl", "terminate-user", ""],
+        "command": [
+          "loginctl",
+          "terminate-user",
+          ""
+        ],
         "dangerous": true,
         "description": "Log out of the current session",
         "enabled": true,
@@ -351,7 +409,10 @@
         "name": "Logout"
       },
       {
-        "command": ["loginctl", "lock-session"],
+        "command": [
+          "loginctl",
+          "lock-session"
+        ],
         "dangerous": false,
         "description": "Lock the current session",
         "enabled": true,
@@ -359,7 +420,10 @@
         "name": "Lock"
       },
       {
-        "command": ["systemctl", "suspend-then-hibernate"],
+        "command": [
+          "systemctl",
+          "suspend-then-hibernate"
+        ],
         "dangerous": false,
         "description": "Suspend then hibernate",
         "enabled": true,
@@ -374,60 +438,54 @@
     "clearThreshold": 0.3,
     "expandThreshold": 20,
     "actionOnClick": false,
-    "groupPreviewNum": 3,
-    "sizes": {
-      "width": 400,
-      "image": 41,
-      "badge": 20
-    }
+    "groupPreviewNum": 3
   },
   "osd": {
     "enabled": true,
     "hideDelay": 2000,
     "enableBrightness": true,
-    "enableMicrophone": false,
-    "sizes": {
-      "sliderWidth": 30,
-      "sliderHeight": 150
-    }
+    "enableMicrophone": false
   },
   "session": {
     "enabled": true,
     "dragThreshold": 30,
     "vimKeybinds": false,
-    "commands": {
-      "logout": ["loginctl", "terminate-user", ""],
-      "shutdown": ["systemctl", "poweroff"],
-      "hibernate": ["systemctl", "hibernate"],
-      "reboot": ["systemctl", "reboot"]
+    "icons": {
+      "logout": "logout",
+      "shutdown": "power_settings_new",
+      "hibernate": "downloading",
+      "reboot": "cached"
     },
-    "sizes": {
-      "button": 80
+    "commands": {
+      "logout": [
+        "loginctl",
+        "terminate-user",
+        ""
+      ],
+      "shutdown": [
+        "systemctl",
+        "poweroff"
+      ],
+      "hibernate": [
+        "systemctl",
+        "hibernate"
+      ],
+      "reboot": [
+        "systemctl",
+        "reboot"
+      ]
     }
   },
-  "winfo": {
-    "sizes": {
-      "heightMult": 0.7,
-      "detailsWidth": 500
-    }
-  },
+  "winfo": {},
   "lock": {
     "recolourLogo": false,
     "enableFprint": true,
     "maxFprintTries": 3,
-    "sizes": {
-      "heightMult": 0.7,
-      "ratio": 1.7777777777777777,
-      "centerWidth": 600
-    }
+    "hideNotifs": false
   },
   "utilities": {
     "enabled": true,
     "maxToasts": 4,
-    "sizes": {
-      "width": 430,
-      "toastWidth": 430
-    },
     "toasts": {
       "configLoaded": true,
       "chargingChanged": true,
@@ -443,29 +501,52 @@
     },
     "vpn": {
       "enabled": false,
-      "provider": [
-        {
-          "displayName": "Wireguard (Your VPN)",
-          "interface": "your-connection-name",
-          "name": "wireguard"
-        }
-      ]
-    }
+      "provider": []
+    },
+    "quickToggles": [
+      {
+        "enabled": true,
+        "id": "wifi"
+      },
+      {
+        "enabled": true,
+        "id": "bluetooth"
+      },
+      {
+        "enabled": true,
+        "id": "mic"
+      },
+      {
+        "enabled": true,
+        "id": "settings"
+      },
+      {
+        "enabled": true,
+        "id": "gameMode"
+      },
+      {
+        "enabled": true,
+        "id": "dnd"
+      },
+      {
+        "enabled": false,
+        "id": "vpn"
+      }
+    ]
   },
   "sidebar": {
     "enabled": true,
-    "dragThreshold": 80,
-    "sizes": {
-      "width": 430
-    }
+    "dragThreshold": 80
   },
   "services": {
     "weatherLocation": "",
     "useFahrenheit": false,
+    "useFahrenheitPerformance": true,
     "useTwelveHourClock": false,
     "gpuType": "",
     "visualiserBars": 45,
     "audioIncrement": 0.1,
+    "brightnessIncrement": 0.1,
     "maxVolume": 1,
     "smartScheme": true,
     "defaultPlayer": "Spotify",
@@ -474,10 +555,12 @@
         "from": "com.github.th_ch.youtube_music",
         "to": "YT Music"
       }
-    ]
+    ],
+    "showLyrics": true
   },
   "paths": {
     "wallpaperDir": "~/Pictures/Wallpapers",
+    "lyricsDir": "/home/filaco/Music/lyrics/",
     "sessionGif": "root:/assets/kurukuru.gif",
     "mediaGif": "root:/assets/bongocat.gif"
   }

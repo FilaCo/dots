@@ -43,3 +43,6 @@ if status is-interactive
     # Custom fish config
     source ~/.config/caelestia/user-config.fish 2> /dev/null
 end
+
+# opencode
+fish_add_path /home/filaco/.opencode/bin

@@ -51,6 +51,9 @@
     "Python": {
       "language_servers": ["ty", "!basedpyright", "..."],
     },
+    "Meson": {
+      "language_servers": ["mesonlsp", "!muon"],
+    },
   },
   "lsp": {
     "rust-analyzer": {

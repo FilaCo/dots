@@ -1,16 +1,28 @@
 {
-  "editor.cursorSmoothCaretAnimation": "on",
-  "editor.fontLigatures": true,
-  "workbench.list.smoothScrolling": true,
-  "editor.smoothScrolling": true,
-  "terminal.integrated.smoothScrolling": true,
-  "workbench.iconTheme": "catppuccin-mocha",
-  "CangjieSdkPath.CJNativeBackend": "/home/filaco/.cangjie",
-  "Cangjie.CodeCheckOnSave": true,
-  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', monospace",
-  "workbench.startupEditor": "none",
-  "workbench.secondarySideBar.defaultVisibility": "hidden",
   "files.autoSave": "onFocusChange",
+  "explorer.confirmDelete": false,
+  "editor.formatOnSave": true,
+  "clangd.path": "/home/filaco/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/21.1.8/clangd_21.1.8/bin/clangd",
+  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', monospace",
+  "chat.disableAIFeatures": true,
+  "Cangjie.CodeCheckOnSave": true,
+  "CangjieLog.Telemetry": true,
+  "remote.SSH.remotePlatform": {
+    "filaco.dev": "linux",
+    "10.219.32.233": "linux",
+  },
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "security.workspace.trust.untrustedFiles": "open",
+  "claudeCode.preferredLocation": "panel",
+  "update.showReleaseNotes": false,
+  "CangjieSdkPath.CJNativeBackend": "C:\\Program Files (x86)\\Cangjie",
   "rust-analyzer.check.command": "clippy",
-  "editor.formatOnSave": true
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "hediet.vscode-drawio.resizeImages": null,
+  "workbench.startupEditor": "none",
 }
