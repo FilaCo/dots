@@ -10,7 +10,7 @@ if status is-interactive
     alias ls='eza --icons --group-directories-first -1'
 
     # Abbrs
-    abbr lg lazygit
+    abbr lg 'lazygit'
     abbr gd 'git diff'
     abbr ga 'git add .'
     abbr gc 'git commit -am'
@@ -27,16 +27,19 @@ if status is-interactive
     abbr gco 'git checkout'
     abbr gsh 'git show'
 
-    abbr l ls
+    abbr l 'ls'
     abbr ll 'ls -l'
     abbr la 'ls -a'
     abbr lla 'ls -la'
 
     # Custom colours
-    cat ~/.local/state/caelestia/sequences.txt 2>/dev/null
+    cat ~/.local/state/caelestia/sequences.txt 2> /dev/null
 
-    # Autostart hyprland
-    if uwsm check may-start 1>/dev/null
-        uwsm start hyprland-uwsm.desktop
+    # For jumping between prompts in foot terminal
+    function mark_prompt_start --on-event fish_prompt
+        echo -en "\e]133;A\e\\"
     end
+
+    # Custom fish config
+    source ~/.config/caelestia/user-config.fish 2> /dev/null
 end
