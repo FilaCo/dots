@@ -20,14 +20,17 @@
   "mesonbuild.formatting.enabled": true,
   "mesonbuild.downloadLanguageServer": false,
   "claudeCode.preferredLocation": "panel",
-  "editor.inlayHints.enabled": "on",
+  "editor.inlayHints.enabled": "offUnlessPressed",
   "claudeCode.selectedModel": "opus",
   "workbench.colorTheme": "Dark Modern",
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
-  "CangjieSdkPath.CJNativeBackend": "/home/filaco/.cangjie",
+  "CangjieSdkPath.CJNativeBackend": "/home/filaco/.cjpm/toolchains/default",
   "[objective-c]": {
     "editor.defaultFormatter": "xaver.clang-format"
-  }
+  },
+  "cmake.automaticReconfigure": false,
+  "cmake.configureOnEdit": false,
+  "cmake.configureOnOpen": false
 }

@@ -1,11 +1,18 @@
 {
-    "appearance": {
-        "transparency": {
-            "enabled": false
+    "bar": {
+        "clock": {
+            "showDate": false
+        },
+        "tray": {
+            "background": false,
+            "compact": false,
+            "recolour": true
+        },
+        "workspaces": {
+            "shown": 7
         }
     },
     "services": {
-        "useFahrenheit": false,
         "useTwelveHourClock": false
     }
 }

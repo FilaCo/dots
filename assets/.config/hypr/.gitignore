@@ -1,2 +1,2 @@
-monitors.conf
-workspaces.conf
+monitors.lua
+workspaces.lua
